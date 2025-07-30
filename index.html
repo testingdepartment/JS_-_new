@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript для тестировщиков - Полный учебник</title>
+    <meta name="description" content="Самый полный и современный учебник по JavaScript для автоматизации тестирования">
+    <meta name="keywords" content="JavaScript, тестирование, автоматизация, Selenium, Cypress, Jest, Playwright">
+
+    <!-- PWA манифест -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2196f3">
+
+    <!-- Иконки -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+
+    <!-- Стили -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Open Graph метаданные -->
+    <meta property="og:title" content="JavaScript для тестировщиков - Полный учебник">
+    <meta property="og:description" content="150+ уроков по JavaScript для автоматизации тестирования">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/2196f3/ffffff?text=JS+Testing+Academy">
+
+    <!-- Preload критичных ресурсов -->
+    <link rel="preload" href="app.js" as="script">
+    <link rel="preload" href="lessonsData.js" as="script">
+</head>
+<body>
+    <!-- Загрузочный экран -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loader">
+            <div class="spinner"></div>
+            <p>Загружаем учебник...</p>
+        </div>
+    </div>
+
+    <!-- Основной контейнер -->
+    <div id="app" class="app-container" style="display: none;">
+        <!-- Хедер -->
+        <header class="main-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <button id="menu-toggle" class="menu-toggle" aria-label="Открыть меню">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <h1 class="site-title">
+                        📚 JavaScript Testing Academy
+                    </h1>
+                </div>
+
+                <div class="header-right">
+                    <!-- Поиск -->
+                    <div class="search-container">
+                        <input type="text" id="search-input" placeholder="Поиск по урокам..." class="search-input">
+                        <button id="search-btn" class="search-btn" aria-label="Поиск">🔍</button>
+                        <div id="search-results" class="search-results"></div>
+                    </div>
+
+                    <!-- Переключатель темы -->
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+
+                    <!-- Прогресс -->
+                    <div class="progress-info">
+                        <span id="progress-text">0/150 уроков</span>
+                        <div class="progress-bar">
+                            <div id="progress-fill" class="progress-fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Боковое меню -->
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-content">
+                <!-- Фильтры -->
+                <div class="filters">
+                    <select id="difficulty-filter" class="filter-select">
+                        <option value="">Все уровни</option>
+                        <option value="beginner">Начинающий</option>
+                        <option value="intermediate">Средний</option>
+                        <option value="advanced">Продвинутый</option>
+                    </select>
+
+                    <select id="category-filter" class="filter-select">
+                        <option value="">Все категории</option>
+                        <option value="basics">Основы</option>
+                        <option value="dom">DOM</option>
+                        <option value="async">Асинхронность</option>
+                        <option value="testing">Тестирование</option>
+                    </select>
+                </div>
+
+                <!-- Навигационное меню -->
+                <nav id="lesson-menu" class="lesson-menu">
+                    <!-- Будет заполнено JavaScript -->
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Основной контент -->
+        <main class="main-content">
+            <!-- Breadcrumbs -->
+            <nav id="breadcrumbs" class="breadcrumbs" aria-label="Навигация по разделам">
+                <!-- Будет заполнено JavaScript -->
+            </nav>
+
+            <!-- Контент урока -->
+            <article id="lesson-content" class="lesson-content">
+                <!-- Начальный экран -->
+                <div class="welcome-screen">
+                    <h2>Добро пожаловать в JavaScript Testing Academy! 🎯</h2>
+                    <p>Самый полный и современный учебник по JavaScript для автоматизации тестирования</p>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h3>150+</h3>
+                            <p>Детальных уроков</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>500+</h3>
+                            <p>Практических примеров</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>50+</h3>
+                            <p>Реальных проектов</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>12</h3>
+                            <p>Тематических разделов</p>
+                        </div>
+                    </div>
+
+                    <div class="cta-buttons">
+                        <button id="start-learning" class="btn-primary">Начать обучение</button>
+                        <button id="show-roadmap" class="btn-secondary">Карта обучения</button>
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <!-- Плавающие элементы управления -->
+        <div class="floating-controls">
+            <button id="back-to-top" class="floating-btn" aria-label="Наверх" title="Наверх">↑</button>
+            <button id="toggle-notes" class="floating-btn" aria-label="Заметки" title="Заметки">📝</button>
+        </div>
+
+        <!-- Боковая панель заметок -->
+        <div id="notes-panel" class="notes-panel">
+            <div class="notes-header">
+                <h3>Мои заметки</h3>
+                <button id="close-notes" class="close-btn">×</button>
+            </div>
+            <div class="notes-content">
+                <textarea id="notes-text" placeholder="Добавьте свои заметки по текущему уроку..."></textarea>
+                <button id="save-notes" class="btn-primary">Сохранить</button>
+            </div>
+        </div>
+
+        <!-- Модальные окна -->
+        <div id="modal-overlay" class="modal-overlay">
+            <div class="modal">
+                <div class="modal-header">
+                    <h3 id="modal-title">Заголовок</h3>
+                    <button id="modal-close" class="close-btn">×</button>
+                </div>
+                <div id="modal-content" class="modal-content">
+                    <!-- Динамический контент -->
+                </div>
+                <div class="modal-footer">
+                    <button id="modal-confirm" class="btn-primary">OK</button>
+                    <button id="modal-cancel" class="btn-secondary">Отмена</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Уведомления -->
+        <div id="toast-container" class="toast-container">
+            <!-- Динамические уведомления -->
+        </div>
+    </div>
+
+    <!-- Скрипты -->
+    <script src="lessonsData.js"></script>
+    <script src="app.js"></script>
+
+    <!-- Service Worker регистрация -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(registration => console.log('SW registered'))
+                    .catch(error => console.log('SW registration failed'));
+            });
+        }
+    </script>
+</body>
+</html>
